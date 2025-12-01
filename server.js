@@ -4,7 +4,9 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-require('dotenv').config();
+//require('dotenv').config();
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development' )
+{ require('dotenv').config(); }
 const app = express();
 const PORT = 5000;
 
