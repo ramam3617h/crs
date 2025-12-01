@@ -1,10 +1,10 @@
 // server.js - Node.js Express Backend with MySQL
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2/promise');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-require('dotenv').config();
 const app = express();
 const PORT = 5000;
 
@@ -23,17 +23,7 @@ const pool = mysql.createPool({
   connectionLimit: process.env.CDB_CONNECTION_LIMIT,
   queueLimit: 0
 });
-// MySQL Connection Pool
-/*const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'your_password',
-  database: 'candidate_db',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-});
-*/
+
 // Test database connection
 pool.getConnection()
   .then(connection => {
