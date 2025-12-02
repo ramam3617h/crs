@@ -15,6 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // MySQL Connection Pool
 const pool = mysql.createPool({
   host: process.env.CDB_HOST,
@@ -48,11 +49,24 @@ pool.getConnection()
 
 // ==================== API ROUTES ====================
 
+// Source - https://stackoverflow.com/a
+// Posted by Samuel Blebo, modified by community. See post 'Timeline' for change history
+// Retrieved 2025-12-02, License - CC BY-SA 4.0
+
+var distDir = __dirname + "/dist/";
+
+app.use(express.static(distDir));
+
 // Health check
 app.get('/', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
+
+// Health check
+app.get('/api', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
 
 // Get all candidates with optional filters
 app.get('/api/candidates', async (req, res) => {
