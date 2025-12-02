@@ -48,6 +48,12 @@ pool.getConnection()
 
 // ==================== API ROUTES ====================
 
+// Health check
+app.get('/', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+
 // Get all candidates with optional filters
 app.get('/api/candidates', async (req, res) => {
   try {
