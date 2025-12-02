@@ -57,6 +57,12 @@ var distDir = __dirname + "/dist/";
 
 app.use(express.static(distDir));
 
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
+
 // Health check
 app.get('/', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
@@ -67,6 +73,12 @@ app.get('/', (req, res) => {
 app.get('/api', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
+
 
 // Get all candidates with optional filters
 app.get('/api/candidates', async (req, res) => {
